@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Modal from "react-modal";
 import Button from 'react-bootstrap/Button';
 
@@ -12,6 +12,10 @@ export const AddOperator:React.FC <AddOperatorProps> = (props) => {
     const [inputOp, setInputOp] = useState<string>('');
     const [showModal, setShowModal] = useState<boolean>(false);
     const [message2, setMessage2] = useState<string>(props.message);
+
+    useEffect(() => {
+        setMessage2(props.message);
+  });
 
     function onChangeSearch (e: React.ChangeEvent<HTMLInputElement>) {
         let value: string = e.target.value;

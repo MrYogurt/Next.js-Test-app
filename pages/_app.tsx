@@ -14,6 +14,19 @@ const MassViewer:React.FC = (props) => {
 
     const [checkInput, setCheckInput] = useState<string>('Заполните поле');
     const [opNames, setOpNames] = useState<string[]>(["МТС", "Билайн", "Мегафон"]);
+    // const [refresh, setRefresh] = useState<string>('');
+
+
+    // useEffect(() => {
+        
+    //         console.log(refresh);
+    //         setCheckInput(refresh);
+        
+    //   });
+
+    // function stateResend(state: string) {
+    //     setRefresh(state);
+    // }
 
     function AddBrand (name: string) {
         let array: string[] = opNames.slice();
@@ -26,8 +39,11 @@ const MassViewer:React.FC = (props) => {
             if (checkAvailability(array, name) === false) {
                 setOpNames([...opNames, name]);
                 setCheckInput('Добавлено');
+                // stateResend('Добавлено')
+                
             } else {
                 setCheckInput('Такой оператор уже есть');
+                // stateResend('Такой оператор уже есть')
             }
     }
 
