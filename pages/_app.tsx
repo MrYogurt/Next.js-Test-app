@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Modal from 'react-modal';
 import '../styles/globals.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,19 +14,6 @@ const MassViewer:React.FC = (props) => {
 
     const [checkInput, setCheckInput] = useState<string>('Заполните поле');
     const [opNames, setOpNames] = useState<string[]>(["МТС", "Билайн", "Мегафон"]);
-    // const [refresh, setRefresh] = useState<string>('');
-
-
-    // useEffect(() => {
-        
-    //         console.log(refresh);
-    //         setCheckInput(refresh);
-        
-    //   });
-
-    // function stateResend(state: string) {
-    //     setRefresh(state);
-    // }
 
     function AddBrand (name: string) {
         let array: string[] = opNames.slice();
