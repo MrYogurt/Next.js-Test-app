@@ -16,8 +16,7 @@ export const DelOperator:React.FC <DelOperatorProps> = (props) => {
     );
 
     function newData () {
-        let brand = props.brand;
-        setOpNames(brand.map((item) => {
+        setOpNames(props.brand.map((item) => {
             return {checked: false, name: item, id: item};
         }));
     }
