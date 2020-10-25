@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Modal from "react-modal";
 import Button from 'react-bootstrap/Button';
 
@@ -14,6 +14,17 @@ export const DelOperator:React.FC <DelOperatorProps> = (props) => {
             return { checked: false, name: item, id: item };
         })
     );
+
+    function newData () {
+        let brand = props.brand;
+        setOpNames(brand.map((item) => {
+            return {checked: false, name: item, id: item};
+        }));
+    }
+
+    useEffect(() => {
+            newData();
+    }, [props.brand]);
 
     function changeHandler (changeId: string) {
         let newState = opNames.slice();
