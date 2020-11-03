@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Modal from "react-modal";
 import Button from 'react-bootstrap/Button';
+import styled from 'styled-components';
 
 interface AddOperatorProps {
     AddBrand(inputResult: string): void;
@@ -23,23 +24,25 @@ export const AddOperator:React.FC <AddOperatorProps> = (props) => {
         setInputOp(value);
     }
 
-    function handleAddOp (e: React.MouseEvent<HTMLElement, MouseEvent>) {
+    function handleAddOp (e: React.FormEvent<HTMLElement, MouseEvent>) {
         e.preventDefault();
         const inputResult: string = inputOp.slice();
 
         if (inputResult.length >= 1) {
             props.AddBrand(inputResult);
-            setInputOp('');
+            // setInputOp('');
             setMessage2(props.message);
         } else {
             setMessage2('Вы не заполнили поле');
-            setInputOp('')
+            // setInputOp('')
         }
     }
 
+    // img не получилось застайлить здесь, из за краша кода, проблема не у меня одного, но решения не нашел.
+
     return (
         <div className="addOp">
-            <a href="#"><span className="newOp" onClick={() => setShowModal(!showModal)}></span></a>
+            <a href="#"><img src="imgs/newop.png" className="OpBlock" onClick={() => setShowModal(!showModal)}></img></a>
             <Modal
                 className="defaultModal"
                 closeTimeoutMS={500}
@@ -48,7 +51,7 @@ export const AddOperator:React.FC <AddOperatorProps> = (props) => {
                 onRequestClose={() => setShowModal(!showModal)}
                 overlayClassName="Overlay"
             >
-                <form>
+                <form onSubmit={handleAddOp}>
                     <br />
                     <h2><p>Добавить оператора</p></h2>
                     <label>

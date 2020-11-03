@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Modal from 'react-modal';
+import styled from 'styled-components';
 import '../styles/globals.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -26,11 +27,9 @@ const MassViewer:React.FC = (props) => {
             if (checkAvailability(array, name) === false) {
                 setOpNames([...opNames, name]);
                 setCheckInput('Добавлено');
-                // stateResend('Добавлено')
                 
             } else {
                 setCheckInput('Такой оператор уже есть');
-                // stateResend('Такой оператор уже есть')
             }
     }
 
@@ -53,6 +52,8 @@ const MassViewer:React.FC = (props) => {
         setOpNames(array2);
     }
 
+    // почему то получаю краш при стайлинге контейнеров здесь и в соседнем компоненте
+
     return (
         <div className="allContainers">
             <div className="opNames">
@@ -66,9 +67,9 @@ const MassViewer:React.FC = (props) => {
 
 const MyApp:React.FC = () => {
     return (
-        <div className="general">
+        <div>
             <div className="divTitle"> <h2>Выберите оператора для оплаты</h2></div>
-            <div className="Ops">
+            <div>
                 <MassViewer />
             </div>
         </div>

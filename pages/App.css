@@ -1,4 +1,15 @@
 
+.OpBlock {
+  width: 200px;
+  height: 200px;
+  /* padding: 50px; */
+  /* float: left; */
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  margin: 50px;
+  border-radius: 50px;
+  display: flex ;
+}
+
 .defaultModal {
   position: fixed;
   width: 300px;
@@ -35,9 +46,11 @@
   outline: none;
 }
 
-/* .outerCheckbox { */
-  /* text-align: center; */
-/* } */
+.outerCheckbox {
+  overflow: auto;
+  max-height: 238px;
+  max-width: 270px;
+}
 
 
 .a{

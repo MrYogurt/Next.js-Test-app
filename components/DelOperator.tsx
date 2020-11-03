@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Modal from "react-modal";
 import Button from 'react-bootstrap/Button';
+import styled from 'styled-components';
 
 interface DelOperatorProps {
     DeleteBrand(forSend: string[]): void;
@@ -15,15 +16,47 @@ export const DelOperator:React.FC <DelOperatorProps> = (props) => {
         })
     );
 
+    useEffect(() => {
+        newData();
+    }, [props.brand]);
+
+    const Checkbox = styled.div`
+    overflow: auto;
+    max-height: 238px;
+    max-width: 270px;
+    `;
+
+    const Form = styled.form`
+    display: flex;
+    justify-content: space-around;
+    `;
+
+    const InnerBox = styled.div`
+    display: flex;
+    margin-top: 5px;
+    `;
+
+    const InnerNameBox = styled.div`
+    margin-left: -50px;
+    margin-bottom: 5px;
+    display: flex;
+    line-height: 21px;
+    `;
+
+    const Asdass = styled.div`
+    margin-top: 30px;
+    `;
+
+    const DelOpButtons = styled.div`
+    margin-top: 40px;
+    text-align: center;
+    `;
+
     function newData () {
         setOpNames(props.brand.map((item) => {
             return {checked: false, name: item, id: item};
         }));
     }
-
-    useEffect(() => {
-            newData();
-    }, [props.brand]);
 
     function changeHandler (changeId: string) {
         let newState = opNames.slice();
@@ -40,9 +73,11 @@ export const DelOperator:React.FC <DelOperatorProps> = (props) => {
         props.DeleteBrand(forSend);
     };
 
+    // img не получилось застайлить здесь, из за краша кода, проблема не у меня одного, но решения не нашел.
+    
     return (
         <div>
-            <a href="#"><span className="delOp" onClick={() => setShowModal(!showModal)}></span></a>
+            <a href="#"><img src="imgs/delop.png" className="OpBlock" onClick={() => setShowModal(!showModal)}></img></a>
             <Modal
                 className="delOpModal"
                 closeTimeoutMS={500}
@@ -50,31 +85,29 @@ export const DelOperator:React.FC <DelOperatorProps> = (props) => {
                 contentLabel="onRequestClose Example"
                 onRequestClose={() => setShowModal(!showModal)}
                 overlayClassName="Overlay"
-            ><div className="outerCheckbox">
-                             <form className="a">
-                             <div className='vyhyh'>
+            >
+                <Checkbox>
+                             <Form onSubmit={submitHandler}>
+                             <div>
                                  <br/>
                                  {opNames.map((item) => (
-                                     <div key={item.id} className="innerBox">
+                                     <InnerBox key={item.id}>
                                          <input
                                             onChange={() => changeHandler(item.id)}
                                             type="checkbox"
                                             id={item.id}
                                             checked={item.checked}
-                                         /></div>))}
+                                         /></InnerBox>))}
                                          </div>
-                                         <div className='asdass'>
+                                         <Asdass>
                                  {opNames.map((item) => (
-                                     <div key={item.id} className="innerNamebox"><label htmlFor={item.id}>{item.name}</label></div>))}
-                                     </div>
+                                     <InnerNameBox key={item.id}><label htmlFor={item.id}>{item.name}</label></InnerNameBox>))}
+                                     </Asdass>
                                  <br />
-                             </form>
-
-                         </div>
-                <div className="delOpButtons"><Button variant="primary" onClick={submitHandler}>Удалить</Button> <br /><br />
-                    <Button variant="danger" onClick={() => setShowModal(!showModal)}>Закрыть</Button></div>
-
-
+                             </Form>
+                         </Checkbox>
+                         <DelOpButtons><Button variant="primary" onClick={submitHandler}>Удалить</Button> <br /><br />
+                    <Button variant="danger" onClick={() => setShowModal(!showModal)}>Закрыть</Button></DelOpButtons>
             </Modal>
         </div>
     )

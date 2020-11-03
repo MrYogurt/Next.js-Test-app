@@ -6,18 +6,18 @@ import Form from 'react-bootstrap/Form';
 export const Inputs:React.FC = (props) => {
 
     const [filterSum, setFilterSum] = useState<number>();
-    const [inputNumber, setInputNumber] = useState('');
+    const [inputNumber, setInputNumber] = useState<string>('');
     const [info, setInfo] = useState<string>('Заполните поля');
 
     function onChangeSearch (e: React.ChangeEvent<HTMLInputElement>) {
         let value: number = parseInt(e.target.value);
         setFilterSum(value);
 
-        if (value <= 0) {
-            setFilterSum(value = 1);
-        } else if (value >= 1000) {
-            setFilterSum(value = 1000);
-        }
+        // if (value <= 0) {
+        //     setFilterSum(value = 1);
+        // } else if (value >= 1000) {
+        //     setFilterSum(value = 1000);
+        // }
     }
 
     function handleInputNumber ({target: {value}}) {
@@ -40,20 +40,20 @@ export const Inputs:React.FC = (props) => {
 
         if (matchResult == null) {
             setInfo('Номер введен неверно');
-        } else if (filterSum <= 0 || filterSum === undefined){
-            setInfo('Введите сумму');
+        } else if (filterSum <= 0 || filterSum >= 1000 || filterSum === undefined){
+            setInfo('Неверно. Сумма должна быть от 1 до 1000');
         } else {
             setInfo('Ожидание...');
             setTimeout(Random, 1000);
         }
-            setInputNumber('');
-            setFilterSum(0);
+            // setInputNumber('');
+            // setFilterSum(0);
         }
         
 
     return (
         <div>
-            <Form>
+            <Form onSubmit={handleSend}>
                 <label>
                     Номер: <InputMask mask="+7(999)999-99-99"
                                       maskChar="_"
@@ -69,9 +69,10 @@ export const Inputs:React.FC = (props) => {
                                   onChange = {onChangeSearch}/>
                 </label><br />
                 <br />
-                <div className="infoMessage">{info}</div>
+                <div className="infoMessage">{info}</div><br />
+                <Button type="submit" variant="primary" onClick={handleSend}>Отправить</Button>
             </Form><br />
-            <Button variant="primary" onClick={handleSend}>Отправить</Button>
+            
         </div>
     );
 
