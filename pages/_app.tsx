@@ -52,7 +52,18 @@ const MassViewer:React.FC = (props) => {
         setOpNames(array2);
     }
 
-    // почему то получаю краш при стайлинге контейнеров здесь и в соседнем компоненте
+    const Styleallconainers = styled.div`
+    resize: both;
+    overflow: hidden;
+    `;
+
+    const Styleopnames = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    `;
+
+    // почему то получаю краши при стайлинге местных контейнеров
 
     return (
         <div className="allContainers">

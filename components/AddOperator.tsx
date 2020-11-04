@@ -24,7 +24,7 @@ export const AddOperator:React.FC <AddOperatorProps> = (props) => {
         setInputOp(value);
     }
 
-    function handleAddOp (e: React.FormEvent<HTMLElement, MouseEvent>) {
+    function handleAddOp (e: React.FormEvent<any>) {
         e.preventDefault();
         const inputResult: string = inputOp.slice();
 
